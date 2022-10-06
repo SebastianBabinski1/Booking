@@ -43,7 +43,11 @@ const Header = ({ type }) => {
 
   return (
     <div className={styles.header}>
-      <div className={styles.headerContainer}>
+      <div
+        className={`${styles.headerContainer} ${
+          type === "list" && styles.listMode
+        }`}
+      >
         <div className={styles.itemsContainer}>
           <div className={`${styles.item} ${styles.active}`}>
             <FontAwesomeIcon icon={faBed} />

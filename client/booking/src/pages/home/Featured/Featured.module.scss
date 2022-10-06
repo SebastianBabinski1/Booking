@@ -1,0 +1,33 @@
+.featured {
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  z-index: 1;
+
+  &Item {
+    position: relative;
+    color: white;
+    font-weight: 600;
+  }
+}
+
+.place {
+  font-size: 2rem;
+}
+.properties {
+  font-size: 1.5rem;
+}
+
+.image {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.title {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}

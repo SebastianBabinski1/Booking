@@ -1,5 +1,6 @@
-import Navbar from "../home/Navbar/Navbar";
-import Header from "../home/Header/Header";
+import styles from "./List.module.scss";
+import Navbar from "../components/Navbar/Navbar";
+import Header from "../components/Header/Header";
 
 const List = () => {
   return (

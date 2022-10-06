@@ -1,0 +1,50 @@
+@import "../../../utils/utils.scss";
+
+.lovedProperties {
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.propertyItem {
+  flex: 1;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.image {
+  width: 100%;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.city {
+  font-weight: 300;
+}
+
+.price {
+  font-weight: 500;
+}
+
+.rating {
+  &Wrapper {
+  }
+
+  &Button {
+    background-color: $defaultBlue;
+    color: white;
+    border: none;
+    padding: 3px;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+
+  &Desc {
+    font-size: 14px;
+  }
+}
