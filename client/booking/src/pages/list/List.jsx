@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
+import SearchItem from "./SearchItem/SearchItem";
 
 const List = () => {
   const location = useLocation();
@@ -48,42 +49,59 @@ const List = () => {
               )}
             </div>
             <div className={styles.item}>
-              <label className={styles.itemLabel}>Options</label>.
-              <div className={styles.itemOption}>
-                <span className={styles.optionText}>Min price per night</span>
-                <input type="number" className={styles.itemInput} />
-              </div>
-              <div className={styles.itemOption}>
-                <span className={styles.optionText}>Max price per night</span>
-                <input type="number" className={styles.itemInput} />
-              </div>
-              <div className={styles.itemOption}>
-                <span className={styles.optionText}>Adult</span>
-                <input
-                  type="number"
-                  className={styles.itemInput}
-                  placeholder={options.adult}
-                />
-              </div>
-              <div className={styles.itemOption}>
-                <span className={styles.optionText}>Children</span>
-                <input
-                  type="number"
-                  className={styles.itemInput}
-                  placeholder={options.children}
-                />
-              </div>
-              <div className={styles.itemOption}>
-                <span className={styles.optionText}>Room</span>
-                <input
-                  type="number"
-                  className={styles.itemInput}
-                  placeholder={options.room}
-                />
+              <label className={styles.itemLabel}>Options</label>
+              <div className={styles.optionsWrapper}>
+                <div className={styles.option}>
+                  <span className={styles.optionText}>Min price per night</span>
+                  <input type="number" className={styles.optionInput} />
+                </div>
+                <div className={styles.option}>
+                  <span className={styles.optionText}>Max price per night</span>
+                  <input type="number" className={styles.optionInput} />
+                </div>
+                <div className={styles.option}>
+                  <span className={styles.optionText}>Adult</span>
+                  <input
+                    type="number"
+                    min={1}
+                    className={styles.optionInput}
+                    placeholder={options.adult}
+                  />
+                </div>
+                <div className={styles.option}>
+                  <span className={styles.optionText}>Children</span>
+                  <input
+                    type="number"
+                    min={0}
+                    className={styles.optionInput}
+                    placeholder={options.children}
+                  />
+                </div>
+                <div className={styles.option}>
+                  <span className={styles.optionText}>Room</span>
+                  <input
+                    type="number"
+                    min={1}
+                    className={styles.optionInput}
+                    placeholder={options.room}
+                  />
+                </div>
+                <button className={styles.optionsSearchButton}>Serach</button>
               </div>
             </div>
           </div>
-          <div className={styles.result}></div>
+          <div className={styles.result}>
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+          </div>
         </div>
       </div>
     </div>
