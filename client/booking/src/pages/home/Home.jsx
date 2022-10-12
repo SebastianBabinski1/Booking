@@ -5,7 +5,7 @@ import Header from "../components/Header/Header";
 import PropetryList from "./PropetryList/PropetryList";
 import LovedProperties from "./LovedProperties/LovedProperties";
 import MailList from "./MailList/MailList";
-import Footer from "./Footer/Footer";
+import Footer from "../components/Footer/Footer.jsx";
 
 const Home = () => {
   return (
