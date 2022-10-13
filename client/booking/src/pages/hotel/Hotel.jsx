@@ -2,9 +2,32 @@ import styles from "./Hotel.module.scss";
 import Navbar from "../components/Navbar/Navbar.jsx";
 import Header from "../components/Header/Header.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import {
+  faLocationDot,
+  faCircleXmark,
+  faCircleArrowLeft,
+  faCircleArrowRight,
+} from "@fortawesome/free-solid-svg-icons";
+import Footer from "../components/Footer/Footer.jsx";
+import MailList from "../home/MailList/MailList.jsx";
+import { useState } from "react";
 
 const Hotel = () => {
+  const [slideIndex, setSlideIndex] = useState(0);
+  const [open, setOpen] = useState(false);
+
+  const handleMove = (dir) => {
+    let newSlideIndex;
+
+    if (dir === "l") {
+      newSlideIndex = slideIndex === 0 ? 5 : slideIndex - 1;
+    } else {
+      newSlideIndex = slideIndex === 5 ? 0 : slideIndex + 1;
+    }
+
+    setSlideIndex(newSlideIndex);
+  };
+
   const photos = [
     {
       src: "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/278258880.jpg?k=50cf1cdce5a9f9d0bb38948542d30be5f26a440215fa8f5a3449983278ec6bf6&o=&hp=1",
@@ -31,6 +54,32 @@ const Hotel = () => {
       <Navbar />
       <Header type="list" />
       <div className={styles.container}>
+        {open && (
+          <div className={styles.slider}>
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className={styles.close}
+              onClick={() => setOpen(false)}
+            />
+            <FontAwesomeIcon
+              icon={faCircleArrowLeft}
+              className={styles.arrow}
+              onClick={() => handleMove("l")}
+            />
+            <div className={styles.sliderWrapper}>
+              <img
+                src={photos[slideIndex].src}
+                alt="slide"
+                className={styles.sliderImg}
+              />
+            </div>
+            <FontAwesomeIcon
+              icon={faCircleArrowRight}
+              className={styles.arrow}
+              onClick={() => handleMove("r")}
+            />
+          </div>
+        )}
         <div className={styles.wrapper}>
           <button className={styles.bookNow}>Reserve or book now!</button>
           <p className={styles.title}>Hotel Róża Wiatrów</p>
@@ -45,9 +94,17 @@ const Hotel = () => {
             Book a stay over $90 at this property and get a free taxi
           </span>
           <div className={styles.images}>
-            {photos.map((item) => (
+            {photos.map((item, index) => (
               <div className={styles.imgWrapper}>
-                <img src={item.src} alt="hotel room" className={styles.img} />
+                <img
+                  onClick={() => {
+                    setSlideIndex(index);
+                    setOpen(true);
+                  }}
+                  src={item.src}
+                  alt="hotel room"
+                  className={styles.img}
+                />
               </div>
             ))}
           </div>
@@ -64,19 +121,25 @@ const Hotel = () => {
                 Perferendis, obcaecati ea cumque quo aut reiciendis recusandae!
               </p>
             </div>
-            <div className={styles.detailsPrice}>
-              <h1>Perfect for a 7-night stay!</h1>
-              <span>
+            <div className={styles.rightBar}>
+              <p className={styles.rightBarTitle}>
+                Perfect for a 7-night stay!
+              </p>
+              <span className={styles.rightBarDesc}>
                 Located in the middle of Gdańsk, this offer has great location
                 and excellent score!
               </span>
-              <h2>
+              <p className={styles.rightBarPrice}>
                 <b>$90</b> (per night)
-              </h2>
-              <button>Reserve or book now!</button>
+              </p>
+              <button className={styles.rightBarButton}>
+                Reserve or book now!
+              </button>
             </div>
           </div>
         </div>
+        <MailList />
+        <Footer />
       </div>
     </div>
   );
