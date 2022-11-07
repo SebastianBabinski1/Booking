@@ -12,21 +12,11 @@ import Footer from "../components/Footer/Footer.jsx";
 import MailList from "../home/MailList/MailList.jsx";
 import { useState } from "react";
 
+import Modal from "react-bootstrap/Modal";
+
 const Hotel = () => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [open, setOpen] = useState(false);
-
-  const handleMove = (dir) => {
-    let newSlideIndex;
-
-    if (dir === "l") {
-      newSlideIndex = slideIndex === 0 ? 5 : slideIndex - 1;
-    } else {
-      newSlideIndex = slideIndex === 5 ? 0 : slideIndex + 1;
-    }
-
-    setSlideIndex(newSlideIndex);
-  };
 
   const photos = [
     {
@@ -49,37 +39,58 @@ const Hotel = () => {
     },
   ];
 
-  return (
-    <div>
-      <Navbar />
-      <Header type="list" />
-      <div className={styles.container}>
-        {open && (
-          <div className={styles.slider}>
-            <FontAwesomeIcon
-              icon={faCircleXmark}
-              className={styles.close}
-              onClick={() => setOpen(false)}
-            />
-            <FontAwesomeIcon
-              icon={faCircleArrowLeft}
-              className={styles.arrow}
-              onClick={() => handleMove("l")}
-            />
-            <div className={styles.sliderWrapper}>
-              <img
-                src={photos[slideIndex].src}
-                alt="slide"
-                className={styles.sliderImg}
-              />
-            </div>
-            <FontAwesomeIcon
-              icon={faCircleArrowRight}
-              className={styles.arrow}
-              onClick={() => handleMove("r")}
+  function MyVerticallyCenteredModal(props) {
+    const handleMove = (dir) => {
+      let newSlideIndex;
+
+      if (dir === "l") {
+        newSlideIndex = slideIndex === 0 ? 5 : slideIndex - 1;
+      } else {
+        newSlideIndex = slideIndex === 5 ? 0 : slideIndex + 1;
+      }
+
+      setSlideIndex(newSlideIndex);
+    };
+
+    return (
+      <Modal
+        {...props}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        size="xl"
+        animation={false}
+      >
+        <Modal.Header closeButton />
+        <Modal.Body className={styles.sliderContent}>
+          <FontAwesomeIcon
+            icon={faCircleArrowLeft}
+            className={styles.arrow}
+            onClick={() => handleMove("l")}
+          />
+          <div className={styles.sliderWrapper}>
+            <img
+              src={photos[slideIndex].src}
+              alt="slide"
+              className={styles.sliderImg}
             />
           </div>
-        )}
+          <FontAwesomeIcon
+            icon={faCircleArrowRight}
+            className={styles.arrow}
+            onClick={() => handleMove("r")}
+          />
+        </Modal.Body>
+      </Modal>
+    );
+  }
+
+  return (
+    <div className={styles.hotel}>
+      <Navbar />
+      <Header type="list" />
+
+      <MyVerticallyCenteredModal show={open} onHide={() => setOpen(false)} />
+      <div className={styles.container}>
         <div className={styles.wrapper}>
           <button className={styles.bookNow}>Reserve or book now!</button>
           <p className={styles.title}>Hotel Róża Wiatrów</p>
