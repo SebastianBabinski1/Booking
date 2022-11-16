@@ -6,14 +6,25 @@ import { useState } from "react";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from "./SearchItem/SearchItem";
+import useFetch from "../hooks/useFetch.js";
 
 const List = () => {
   const location = useLocation();
 
   const [destination, setDestination] = useState(location.state.destination);
-  const [date, setDate] = useState(location.state.date);
+  const [dates, setDates] = useState(location.state.dates);
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
+  const [min, setMin] = useState(undefined);
+  const [max, setMax] = useState(undefined);
+
+  const { data, loading, error, reFetch } = useFetch(
+    `api/hotels?city=${destination}&min=${min || 0}&max=${max || 999}`
+  );
+
+  const handleClick = () => {
+    reFetch();
+  };
 
   return (
     <div>
@@ -36,15 +47,15 @@ const List = () => {
               <span
                 className={styles.itemSpan}
                 onClick={() => setOpenDate(!openDate)}
-              >{`${format(date[0].startDate, "dd/MM/yyyy")} to ${format(
-                date[0].endDate,
+              >{`${format(dates[0].startDate, "dd/MM/yyyy")} to ${format(
+                dates[0].endDate,
                 "dd/MM/yyyy"
               )}`}</span>
               {openDate && (
                 <DateRange
-                  onChange={(item) => setDate([item.selection])}
+                  onChange={(item) => setDates([item.selection])}
                   minDate={new Date()}
-                  ranges={date}
+                  ranges={dates}
                 ></DateRange>
               )}
             </div>
@@ -53,11 +64,19 @@ const List = () => {
               <div className={styles.optionsWrapper}>
                 <div className={styles.option}>
                   <span className={styles.optionText}>Min price per night</span>
-                  <input type="number" className={styles.optionInput} />
+                  <input
+                    type="number"
+                    onChange={(e) => setMin(e.target.value)}
+                    className={styles.optionInput}
+                  />
                 </div>
                 <div className={styles.option}>
                   <span className={styles.optionText}>Max price per night</span>
-                  <input type="number" className={styles.optionInput} />
+                  <input
+                    type="number"
+                    onChange={(e) => setMax(e.target.value)}
+                    className={styles.optionInput}
+                  />
                 </div>
                 <div className={styles.option}>
                   <span className={styles.optionText}>Adult</span>
@@ -86,21 +105,25 @@ const List = () => {
                     placeholder={options.room}
                   />
                 </div>
-                <button className={styles.optionsSearchButton}>Serach</button>
+                <button
+                  className={styles.optionsSearchButton}
+                  onClick={handleClick}
+                >
+                  Search
+                </button>
               </div>
             </div>
           </div>
           <div className={styles.result}>
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
+            {loading ? (
+              "Loading"
+            ) : (
+              <>
+                {data.map((item) => (
+                  <SearchItem item={item} key={item._id} />
+                ))}
+              </>
+            )}
           </div>
         </div>
       </div>

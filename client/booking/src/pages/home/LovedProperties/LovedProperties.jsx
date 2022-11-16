@@ -1,64 +1,38 @@
+import useFetch from "../../hooks/useFetch";
 import styles from "./LovedProperties.module.scss";
 
 const LovedProperties = () => {
+  const { data, loading, error } = useFetch("api/hotels?featured=true&limit=4");
+
+  console.log(data);
   return (
     <div className={styles.lovedProperties}>
-      <div className={styles.propertyItem}>
-        <img
-          src="https://r-xx.bstatic.com/xdata/images/xphoto/300x240/57584488.jpeg?k=d8d4706fc72ee789d870eb6b05c0e546fd4ad85d72a3af3e30fb80ca72f0ba57&o="
-          alt="loved property"
-          className={styles.image}
-        />
-        <span className={styles.name}>Hotel Róża Wiatrów</span>
-        <span className={styles.city}>Elbląg</span>
-        <span className={styles.price}>250zł</span>
-        <div className={styles.ratingWrapper}>
-          <button className={styles.ratingButton}>8.9</button>
-          <span className={styles.ratingDesc}>Excellent</span>
-        </div>
-      </div>
-      <div className={styles.propertyItem}>
-        <img
-          src="https://r-xx.bstatic.com/xdata/images/xphoto/300x240/57584488.jpeg?k=d8d4706fc72ee789d870eb6b05c0e546fd4ad85d72a3af3e30fb80ca72f0ba57&o="
-          alt="loved property"
-          className={styles.image}
-        />
-        <span className={styles.name}>Hotel Róża Wiatrów</span>
-        <span className={styles.city}>Elbląg</span>
-        <span className={styles.price}>250zł</span>
-        <div className={styles.ratingWrapper}>
-          <button className={styles.ratingButton}>8.9</button>
-          <span className={styles.ratingDesc}>Excellent</span>
-        </div>
-      </div>
-      <div className={styles.propertyItem}>
-        <img
-          src="https://r-xx.bstatic.com/xdata/images/xphoto/300x240/57584488.jpeg?k=d8d4706fc72ee789d870eb6b05c0e546fd4ad85d72a3af3e30fb80ca72f0ba57&o="
-          alt="loved property"
-          className={styles.image}
-        />
-        <span className={styles.name}>Hotel Róża Wiatrów</span>
-        <span className={styles.city}>Elbląg</span>
-        <span className={styles.price}>250zł</span>
-        <div className={styles.ratingWrapper}>
-          <button className={styles.ratingButton}>8.9</button>
-          <span className={styles.ratingDesc}>Excellent</span>
-        </div>
-      </div>
-      <div className={styles.propertyItem}>
-        <img
-          src="https://r-xx.bstatic.com/xdata/images/xphoto/300x240/57584488.jpeg?k=d8d4706fc72ee789d870eb6b05c0e546fd4ad85d72a3af3e30fb80ca72f0ba57&o="
-          alt="loved property"
-          className={styles.image}
-        />
-        <span className={styles.name}>Hotel Róża Wiatrów</span>
-        <span className={styles.city}>Elbląg</span>
-        <span className={styles.price}>250zł</span>
-        <div className={styles.ratingWrapper}>
-          <button className={styles.ratingButton}>8.9</button>
-          <span className={styles.ratingDesc}>Excellent</span>
-        </div>
-      </div>
+      {loading ? (
+        "Loading"
+      ) : (
+        <>
+          {data.map((item) => (
+            <div className={styles.propertyItem} key={item._id}>
+              <img
+                src={item.photos[0]}
+                alt="loved property"
+                className={styles.image}
+              />
+              <span className={styles.name}>{item.name}</span>
+              <span className={styles.city}>{item.city}</span>
+              <span className={styles.price}>
+                Starting from {item.cheapiestPrice}
+              </span>
+              {item.rating && (
+                <div className={styles.ratingWrapper}>
+                  <button className={styles.ratingButton}>{item.rating}</button>
+                  <span className={styles.ratingDesc}>Excellent</span>
+                </div>
+              )}
+            </div>
+          ))}
+        </>
+      )}
     </div>
   );
 };
