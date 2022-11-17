@@ -14,18 +14,23 @@ import { useContext, useState } from "react";
 import useFetch from "../hooks/useFetch";
 
 import Modal from "react-bootstrap/Modal";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { SearchContext } from "../../context/SearchContext";
+import { AuthContext } from "../../context/AuthContext";
+import Reserve from "../components/Reserve/Reserve";
 
 const Hotel = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
   const [slideIndex, setSlideIndex] = useState(0);
   const [open, setOpen] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   const { data, loading, error } = useFetch(`/api/hotels/find/${id}`);
 
   const { dates, options } = useContext(SearchContext);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
   const dayDifference = (date1, date2) => {
@@ -80,6 +85,14 @@ const Hotel = () => {
       </Modal>
     );
   }
+
+  const handleClick = () => {
+    if (user) {
+      setOpenModal(true);
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
     <div className={styles.hotel}>
@@ -141,7 +154,10 @@ const Hotel = () => {
                     <b>${days * data.cheapestPrice * options.room}</b> ({days}{" "}
                     nights)
                   </p>
-                  <button className={styles.rightBarButton}>
+                  <button
+                    className={styles.rightBarButton}
+                    onClick={handleClick}
+                  >
                     Reserve or book now!
                   </button>
                 </div>
@@ -152,6 +168,7 @@ const Hotel = () => {
           </div>
         </>
       )}
+      {openModal && <Reserve setOpen={setOpenModal} hotelId={id} />}
     </div>
   );
 };

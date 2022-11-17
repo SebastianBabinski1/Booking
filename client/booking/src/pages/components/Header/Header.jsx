@@ -16,6 +16,7 @@ import { DateRange } from "react-date-range";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../../../context/SearchContext";
+import { AuthContext } from "../../../context/AuthContext";
 
 const Header = ({ type }) => {
   const [openDate, setOpenDate] = useState(false);
@@ -36,6 +37,8 @@ const Header = ({ type }) => {
   ]);
 
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+  const { dispatch } = useContext(SearchContext);
 
   const handleOption = (name, operation) => {
     setOptions((prev) => {
@@ -45,8 +48,6 @@ const Header = ({ type }) => {
       };
     });
   };
-
-  const { dispatch } = useContext(SearchContext);
 
   const handleSearch = () => {
     dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
@@ -84,13 +85,16 @@ const Header = ({ type }) => {
         </div>
         {type !== "list" && (
           <>
-            {" "}
             <p className={styles.title}>A lifetime of discounts? It's Genius</p>
             <p className={styles.description}>
               Get rewarded for your travels - unlock instant savings of 10% or
               more with a free Booking account
             </p>
-            <button className={styles.headerButton}>Sign in / Register</button>
+            {!user && (
+              <button className={styles.headerButton}>
+                Sign in / Register
+              </button>
+            )}
             <div className={styles.searchWrapper}>
               <div className={styles.searchItem}>
                 <FontAwesomeIcon icon={faBed} className={styles.searchIcon} />

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import styles from "./Login.module.scss";
 
@@ -9,7 +10,9 @@ const Login = () => {
     password: undefined,
   });
 
-  const { user, loading, error, dispatch } = useContext(AuthContext);
+  const { loading, error, dispatch } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -21,12 +24,11 @@ const Login = () => {
     try {
       const res = await axios.post("/api/auth/login", credentials);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+      navigate("/");
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
     }
   };
-
-  console.log(user);
 
   return (
     <div className={styles.login}>
@@ -45,7 +47,11 @@ const Login = () => {
           onChange={handleChange}
           className={styles.loginInput}
         />
-        <button onClick={handleClick} className={styles.loginButton}>
+        <button
+          disabled={loading}
+          onClick={handleClick}
+          className={styles.loginButton}
+        >
           Login
         </button>
         {error && <span>{error.message}</span>}
