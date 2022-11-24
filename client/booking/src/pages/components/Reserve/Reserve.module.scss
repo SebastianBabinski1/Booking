@@ -1,0 +1,71 @@
+@import "../../../utils/utils.scss";
+
+.reserve {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &Container {
+    background-color: #fff;
+    padding: 20px;
+    position: relative;
+  }
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding: 20px;
+
+  &info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &Title {
+    font-weight: 500;
+  }
+
+  &Price {
+    font-weight: 500;
+  }
+}
+
+.reserveButton {
+  border: none;
+  padding: 10px 20px;
+  background-color: $secondaryBlue;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.selectRooms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  font-size: 12px;
+  color: gray;
+}
+
+.room {
+  display: flex;
+  flex-direction: column;
+}
