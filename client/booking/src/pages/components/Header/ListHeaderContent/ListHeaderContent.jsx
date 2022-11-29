@@ -3,9 +3,11 @@ import { useContext } from "react";
 import { AuthContext } from "../../../../context/AuthContext";
 
 import SearchBar from "./SearchBar/SearchBar";
+import { useNavigate } from "react-router-dom";
 
 const ListHeaderContent = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -15,7 +17,12 @@ const ListHeaderContent = () => {
         with a free Booking account
       </p>
       {!user && (
-        <button className={styles.headerButton}>Sign in / Register</button>
+        <button
+          onClick={() => navigate("/login")}
+          className={styles.headerButton}
+        >
+          Sign in / Register
+        </button>
       )}
       <SearchBar />
     </>

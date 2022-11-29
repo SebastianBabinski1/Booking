@@ -27,3 +27,12 @@
   cursor: pointer;
   color: $defaultBlue;
 }
+
+.logoutWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.username {
+  margin: 0;
+}

@@ -2,8 +2,8 @@ import useFetch from "../../hooks/useFetch";
 import styles from "./Featured.module.scss";
 
 const Featured = () => {
-  const { data, loading, error } = useFetch(
-    "/api/hotels/countByCity?cities=berlin,madrid,london"
+  const { data, loading } = useFetch(
+    "/api/hotels/countByCity?cities=Berlin,Madrid,London"
   );
 
   return (
@@ -15,7 +15,7 @@ const Featured = () => {
           <div className={styles.featuredItem}>
             <img
               className={styles.image}
-              src="https://t-cf.bstatic.com/xdata/images/xphoto/540x405/161566238.webp?k=444cf363b0e6ee14ee032c13d75c7c8d072bf6b289b0fa9fd40e02bb81a0afcb&o="
+              src="https://f4fcdn.eu/wp-content/uploads/2019/07/Berlinv2.jpg"
               alt="featured"
             />
             <div className={styles.title}>
@@ -26,7 +26,7 @@ const Featured = () => {
           <div className={styles.featuredItem}>
             <img
               className={styles.image}
-              src="https://t-cf.bstatic.com/xdata/images/xphoto/540x405/161566238.webp?k=444cf363b0e6ee14ee032c13d75c7c8d072bf6b289b0fa9fd40e02bb81a0afcb&o="
+              src="https://www.spain.info/export/sites/segtur/.content/imagenes/cabeceras-grandes/madrid/calle-gran-via-madrid-s333961043.jpg_604889389.jpg"
               alt="featured"
             />
             <div className={styles.title}>
@@ -37,7 +37,7 @@ const Featured = () => {
           <div className={styles.featuredItem}>
             <img
               className={styles.image}
-              src="https://t-cf.bstatic.com/xdata/images/xphoto/540x405/161566238.webp?k=444cf363b0e6ee14ee032c13d75c7c8d072bf6b289b0fa9fd40e02bb81a0afcb&o="
+              src="https://www.history.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTYyNDg1MjE3MTI1Mjc5Mzk4/topic-london-gettyimages-760251843-promo.jpg"
               alt="featured"
             />
             <div className={styles.title}>

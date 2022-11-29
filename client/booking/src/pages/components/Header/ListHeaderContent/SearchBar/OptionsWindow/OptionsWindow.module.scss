@@ -1,0 +1,41 @@
+@import "../../../../../../utils/utils.scss";
+
+.options {
+  position: absolute;
+  top: 50px;
+  background-color: white;
+  color: gray;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.option {
+  &Item {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+  }
+
+  &Counter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: black;
+  }
+
+  &CounterButton {
+    width: 30px;
+    height: 30px;
+    border: 1px solid $secondaryBlue;
+    color: $secondaryBlue;
+    cursor: pointer;
+    background-color: white;
+
+    &:disabled {
+      cursor: default;
+      background-color: #efece5;
+    }
+  }
+}
