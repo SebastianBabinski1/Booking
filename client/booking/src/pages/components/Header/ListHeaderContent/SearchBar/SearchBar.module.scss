@@ -1,0 +1,83 @@
+@import "../../../../../utils/utils.scss";
+
+.search {
+  &Wrapper {
+    height: 30px;
+    padding: 10px 0px;
+    background-color: white;
+    border: 3px solid #febb02;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute;
+    bottom: -25px;
+    width: 100%;
+    max-width: 1024px;
+  }
+
+  &Icon {
+    color: lightgray;
+  }
+
+  &Item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &Input {
+    border: none;
+    outline: none;
+  }
+
+  &Text {
+    color: lightgray;
+    cursor: pointer;
+  }
+}
+
+.date {
+  position: absolute;
+  top: 50px;
+  z-index: 2;
+}
+
+.options {
+  position: absolute;
+  top: 50px;
+  background-color: white;
+  color: gray;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.option {
+  &Item {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+  }
+
+  &Counter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: black;
+  }
+
+  &CounterButton {
+    width: 30px;
+    height: 30px;
+    border: 1px solid $secondaryBlue;
+    color: $secondaryBlue;
+    cursor: pointer;
+    background-color: white;
+
+    &:disabled {
+      cursor: default;
+      background-color: #efece5;
+    }
+  }
+}

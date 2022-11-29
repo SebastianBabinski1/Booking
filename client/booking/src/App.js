@@ -3,7 +3,7 @@ import Home from "./pages/home/Home";
 import List from "./pages/list/List";
 import Hotel from "./pages/hotel/Hotel";
 import "./utils/reset.scss";
-import Login from "./pages/login/Login";
+import Login from "./pages/Login/Login";
 
 function App() {
   return (

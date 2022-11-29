@@ -13,7 +13,10 @@ const Navbar = () => {
           <span className={styles.logo}>SBbooking</span>
         </Link>
         {user ? (
-          user.username
+          <div>
+            <p>{user.username}</p>
+            <button>Logout</button>
+          </div>
         ) : (
           <div className={styles.navItems}>
             <button className={styles.navButton}>Register</button>
