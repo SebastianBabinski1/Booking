@@ -1,3 +1,6 @@
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { SearchContext } from "../../../context/SearchContext";
 import useFetch from "../../hooks/useFetch";
 import styles from "./Featured.module.scss";
 
@@ -6,13 +9,39 @@ const Featured = () => {
     "/api/hotels/countByCity?cities=Berlin,Madrid,London"
   );
 
+  const { dispatch } = useContext(SearchContext);
+  const navigate = useNavigate();
+
+  const [options, setOptions] = useState({
+    adult: 1,
+    children: 0,
+    room: 1,
+  });
+
+  // handle dates
+  const [dates, setDates] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+    },
+  ]);
+
+  const handleSearch = (destination) => {
+    dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
+    navigate("/hotels", { state: { destination, dates, options } });
+  };
+
   return (
     <div className={styles.featured}>
       {loading ? (
         "Loading, please wait"
       ) : (
         <>
-          <div className={styles.featuredItem}>
+          <div
+            className={styles.featuredItem}
+            // onClick={handleSearch("Berlin")}
+          >
             <img
               className={styles.image}
               src="https://f4fcdn.eu/wp-content/uploads/2019/07/Berlinv2.jpg"

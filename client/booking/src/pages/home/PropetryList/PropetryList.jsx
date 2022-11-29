@@ -2,14 +2,14 @@ import useFetch from "../../hooks/useFetch";
 import styles from "./PropetryList.module.scss";
 
 const PropetryList = () => {
-  const { data, loading, error } = useFetch("/api/hotels/countByType");
+  const { data, loading } = useFetch("/api/hotels/countByType");
 
   const images = [
-    "https://t-cf.bstatic.com/xdata/images/city/540x270/727613.webp?k=d593c019106378dac3fb90c171123be6472efea8a0e1595f4d840c9a9971c3ca&o=",
-    "https://t-cf.bstatic.com/xdata/images/city/540x270/727613.webp?k=d593c019106378dac3fb90c171123be6472efea8a0e1595f4d840c9a9971c3ca&o=",
-    "https://t-cf.bstatic.com/xdata/images/city/540x270/727613.webp?k=d593c019106378dac3fb90c171123be6472efea8a0e1595f4d840c9a9971c3ca&o=",
-    "https://t-cf.bstatic.com/xdata/images/city/540x270/727613.webp?k=d593c019106378dac3fb90c171123be6472efea8a0e1595f4d840c9a9971c3ca&o=",
-    "https://t-cf.bstatic.com/xdata/images/city/540x270/727613.webp?k=d593c019106378dac3fb90c171123be6472efea8a0e1595f4d840c9a9971c3ca&o=",
+    "https://cf.bstatic.com/xdata/images/hotel/max1024x768/370564672.jpg?k=4f37af06c05a6f5dfc7db5e8e71d2eb66cae6eec36af7a4a4cd7a25d65ceb941&o=&hp=1",
+    "https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://trekbaron.com/wp-content/uploads/2020/07/types-of-resorts-July282020-1-min.jpg",
+    "https://cf.bstatic.com/xdata/images/hotel/max1024x768/211169608.jpg?k=5ca9f33378e03697af3e2afd3ffca74272c35e71a9dc4cfbb2d9d31fe51ab50c&o=&hp=1",
+    "https://www-vacasa.imgix.net/30217_Morgantown_GA_cabin.jpg?auto=format%2Ccompress&fit=crop&h=1200&ixlib=python-3.2.0&q=45&w=1600&s=0da07cb45cfd3997e683b2e49c1f2ffa",
   ];
 
   return (

@@ -2,7 +2,9 @@ import useFetch from "../../hooks/useFetch";
 import styles from "./LovedProperties.module.scss";
 
 const LovedProperties = () => {
-  const { data, loading } = useFetch("api/hotels?featured=false&limit=4");
+  const { data, loading } = useFetch(
+    `api/hotels?featured=false&limit=${window.screen.width > 1200 ? 4 : 2}`
+  );
 
   return (
     <div className={styles.lovedProperties}>
