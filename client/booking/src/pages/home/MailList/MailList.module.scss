@@ -2,14 +2,18 @@
 
 .mail {
   width: 100%;
-  margin-top: 50px;
-  background-color: $defaultBlue;
   color: white;
+  background-color: $defaultBlue;
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  padding: 50px 0;
+
+  @media (min-width: $screenMd) {
+    width: 100%;
+    gap: 20px;
+    padding: 50px 0;
+  }
 }
 
 .title {
@@ -18,12 +22,26 @@
 }
 
 .input {
-  width: 300px;
+  width: 250px;
   padding: 10px;
   border: none;
-  margin-right: 10px;
   border-radius: 5px;
   box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.4);
+
+  @media (min-width: $screenMd) {
+    margin-right: 10px;
+    width: 300px;
+  }
+
+  &Wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    @media (min-width: $screenMd) {
+      flex-direction: row;
+    }
+  }
 }
 
 .subscribeButton {

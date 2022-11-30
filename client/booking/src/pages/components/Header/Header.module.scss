@@ -6,6 +6,7 @@
   display: flex;
   justify-content: center;
   position: relative;
+  padding: 10px;
 
   &Container {
     width: 100%;
@@ -24,18 +25,8 @@
 .itemsContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
-  margin-bottom: 50px;
+  gap: 20px;
 }
-
-// .item {
-//   display: flex;
-//   align-items: center;
-//   gap: 10px;
-//   padding: 10px;
-//   border: 1px solid $defaultBlue;
-//   border-radius: 20px;
-// }
 
 .buttonText {
   margin-left: 10px;

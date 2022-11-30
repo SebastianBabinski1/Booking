@@ -5,6 +5,7 @@
   background-color: $defaultBlue;
   display: flex;
   justify-content: center;
+  padding: 10px;
 
   &Container {
     width: 100%;
@@ -21,7 +22,7 @@
 }
 
 .navButton {
-  margin: 20px;
+  margin-left: 20px;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
