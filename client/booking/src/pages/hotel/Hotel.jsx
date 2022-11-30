@@ -4,7 +4,6 @@ import Header from "../components/Header/Header.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLocationDot,
-  faCircleXmark,
   faCircleArrowLeft,
   faCircleArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
@@ -26,11 +25,15 @@ const Hotel = () => {
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
-  const { data, loading, error } = useFetch(`/api/hotels/find/${id}`);
+  const { data, loading } = useFetch(`/api/hotels/find/${id}`);
 
   const { dates, options } = useContext(SearchContext);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  console.log("id: ", id);
+  console.log("dates in Hotel comp: ", dates);
+  console.log("data in Hotel comp: ", data);
 
   const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
   const dayDifference = (date1, date2) => {
@@ -124,7 +127,7 @@ const Hotel = () => {
               </span>
               <div className={styles.images}>
                 {data.photos?.map((item, index) => (
-                  <div className={styles.imgWrapper}>
+                  <div className={styles.imgWrapper} key={index}>
                     <img
                       onClick={() => {
                         setSlideIndex(index);

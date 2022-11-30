@@ -12,20 +12,19 @@ const Featured = () => {
   const { dispatch } = useContext(SearchContext);
   const navigate = useNavigate();
 
-  const [options, setOptions] = useState({
+  const options = {
     adult: 1,
     children: 0,
     room: 1,
-  });
+  };
 
-  // handle dates
-  const [dates, setDates] = useState([
+  const dates = [
     {
       startDate: new Date(),
       endDate: new Date(),
       key: "selection",
     },
-  ]);
+  ];
 
   const handleSearch = (destination) => {
     dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
@@ -40,7 +39,7 @@ const Featured = () => {
         <>
           <div
             className={styles.featuredItem}
-            // onClick={handleSearch("Berlin")}
+            onClick={() => handleSearch("Berlin")}
           >
             <img
               className={styles.image}
@@ -52,7 +51,10 @@ const Featured = () => {
               <p className={styles.properties}>{data[0]} properties</p>
             </div>
           </div>
-          <div className={styles.featuredItem}>
+          <div
+            className={styles.featuredItem}
+            onClick={() => handleSearch("Madrid")}
+          >
             <img
               className={styles.image}
               src="https://www.spain.info/export/sites/segtur/.content/imagenes/cabeceras-grandes/madrid/calle-gran-via-madrid-s333961043.jpg_604889389.jpg"
@@ -63,7 +65,10 @@ const Featured = () => {
               <p className={styles.properties}>{data[1]} properties</p>
             </div>
           </div>
-          <div className={styles.featuredItem}>
+          <div
+            className={styles.featuredItem}
+            onClick={() => handleSearch("London")}
+          >
             <img
               className={styles.image}
               src="https://www.history.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTYyNDg1MjE3MTI1Mjc5Mzk4/topic-london-gettyimages-760251843-promo.jpg"

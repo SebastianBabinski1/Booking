@@ -16,7 +16,10 @@ const Header = ({ type }) => {
       >
         <div className={styles.itemsContainer}>
           {headerItems.map((item, index) => (
-            <div className={`${styles.item} ${index === 0 && styles.active}`}>
+            <div
+              key={index}
+              className={`${styles.item} ${index === 0 && styles.active}`}
+            >
               <FontAwesomeIcon icon={item.icon} />
               <span>{item.text}</span>
             </div>
