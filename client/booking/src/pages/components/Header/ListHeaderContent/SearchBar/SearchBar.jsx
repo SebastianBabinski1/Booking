@@ -53,19 +53,23 @@ const SearchBar = () => {
         <span
           onClick={() => setOpenDate(!openDate)}
           className={styles.searchText}
-        >{`${format(dates[0].startDate, "dd/MM/yyyy")} to ${format(
-          dates[0].endDate,
-          "dd/MM/yyyy"
-        )}`}</span>
+        >
+          {`${format(dates[0].startDate, "dd/MM/yyyy")} to ${format(
+            dates[0].endDate,
+            "dd/MM/yyyy"
+          )}`}
+        </span>
         {openDate && (
-          <DateRange
-            editableDateInputs={true}
-            onChange={(item) => setDates([item.selection])}
-            moveRangeOnFirstSelection={false}
-            ranges={dates}
-            minDate={new Date()}
-            className={styles.date}
-          />
+          <>
+            <DateRange
+              editableDateInputs={true}
+              onChange={(item) => setDates([item.selection])}
+              moveRangeOnFirstSelection={false}
+              ranges={dates}
+              minDate={new Date()}
+              className={styles.date}
+            />
+          </>
         )}
       </div>
       <div className={styles.searchItem}>

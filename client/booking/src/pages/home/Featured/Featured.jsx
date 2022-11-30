@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../../../context/SearchContext";
 import useFetch from "../../hooks/useFetch";
@@ -18,10 +18,13 @@ const Featured = () => {
     room: 1,
   };
 
+  const today = new Date();
+  const tommorow = new Date();
+  tommorow.setDate(tommorow.getDate() + 1);
   const dates = [
     {
-      startDate: new Date(),
-      endDate: new Date(),
+      startDate: today,
+      endDate: tommorow,
       key: "selection",
     },
   ];

@@ -18,8 +18,8 @@ const Home = () => {
         <PropetryList />
         <p className={styles.homeTitle}>Homes guests love</p>
         <LovedProperties />
-        <MailList />
-        <Footer />
+        {/* <MailList /> */}
+        {/* <Footer /> */}
       </div>
     </div>
   );
