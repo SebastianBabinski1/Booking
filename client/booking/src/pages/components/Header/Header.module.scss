@@ -28,14 +28,15 @@
   margin-bottom: 50px;
 }
 
-.item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+// .item {
+//   display: flex;
+//   align-items: center;
+//   gap: 10px;
+//   padding: 10px;
+//   border: 1px solid $defaultBlue;
+//   border-radius: 20px;
+// }
 
-.active {
-  border: 1px solid white;
-  padding: 10px;
-  border-radius: 20px;
+.buttonText {
+  margin-left: 10px;
 }
