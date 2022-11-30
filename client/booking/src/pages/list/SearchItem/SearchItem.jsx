@@ -2,24 +2,8 @@ import styles from "./SearchItem.module.scss";
 import { Link } from "react-router-dom";
 
 const SearchItem = ({ item }) => {
-  return (
-    <div className={styles.searchItem}>
-      <img src={item.photos[0]} alt="room" className={styles.searchImage} />
-      <div className={styles.searchDescription}>
-        <p className={styles.searchTitle}>{item.name}</p>
-        <span className={styles.searchDistance}>
-          {item.distance}m from center
-        </span>
-        <span className={styles.searchTaxiOp}>Free airport taxi</span>
-        <span className={styles.searchSubtitle}>
-          Studio Apartment with air conditioning
-        </span>
-        <span className={styles.searchFeatures}>{item.desc}</span>
-        <span className={styles.searchCancelOp}>Free cancellation</span>
-        <span className={styles.searchCancelOpSubtitle}>
-          You can cancel later, so lock in this great price today!
-        </span>
-      </div>
+  const SeeAvailability = () => {
+    return (
       <div className={styles.searchDetails}>
         {item.rating && (
           <div className={styles.searchRating}>
@@ -36,6 +20,32 @@ const SearchItem = ({ item }) => {
             </button>
           </Link>
         </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className={styles.searchItem}>
+      <div className={styles.leftSide}>
+        <img src={item.photos[0]} alt="room" className={styles.searchImage} />
+      </div>
+      <div className={styles.rightSide}>
+        <div className={styles.searchDescription}>
+          <p className={styles.searchTitle}>{item.name}</p>
+          <span className={styles.searchDistance}>
+            {item.distance}m from center
+          </span>
+          <span className={styles.searchTaxiOp}>Free airport taxi</span>
+          <span className={styles.searchSubtitle}>
+            Studio Apartment with air conditioning
+          </span>
+          <span className={styles.searchFeatures}>{item.desc}</span>
+          <span className={styles.searchCancelOp}>Free cancellation</span>
+          <span className={styles.searchCancelOpSubtitle}>
+            You can cancel later, so lock in this great price today!
+          </span>
+        </div>
+        <SeeAvailability />
       </div>
     </div>
   );

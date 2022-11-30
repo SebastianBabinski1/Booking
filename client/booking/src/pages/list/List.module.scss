@@ -11,16 +11,25 @@
   max-width: 1024px;
   display: flex;
   gap: 20px;
+  flex-direction: column;
+
+  @media (min-width: $screenMd) {
+    flex-direction: row;
+  }
 }
 
 .search {
   flex: 1;
   background-color: #febb02;
   padding: 10px;
+  margin: 0 10px;
   border-radius: 10px;
-  position: sticky;
-  top: 10px;
   height: max-content;
+
+  @media (min-width: $screenMd) {
+    top: 10px;
+    position: sticky;
+  }
 }
 .result {
   flex: 3;
