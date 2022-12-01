@@ -50,6 +50,7 @@ const Login = () => {
             onChange={handleChange}
             className={styles.loginInput}
           />
+          {error && <span>{error.message}</span>}
           <button
             disabled={loading}
             onClick={handleClick}
@@ -57,7 +58,13 @@ const Login = () => {
           >
             Login
           </button>
-          {error && <span>{error.message}</span>}
+          <button
+            onClick={() => navigate("/register")}
+            className={styles.registerButton}
+          >
+            You dont have an account? <br />
+            Register now!
+          </button>
         </div>
       </div>
     </div>

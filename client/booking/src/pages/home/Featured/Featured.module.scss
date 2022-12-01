@@ -14,6 +14,8 @@
 
   &Item {
     width: 100%;
+    height: 300px;
+    overflow: hidden;
     position: relative;
     color: white;
     font-weight: 600;
@@ -32,9 +34,14 @@
 
 .image {
   width: 100%;
-  height: 300px;
+  height: 100%;
   object-fit: cover;
   border-radius: 10px;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .title {

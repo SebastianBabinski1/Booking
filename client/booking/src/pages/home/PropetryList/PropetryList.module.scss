@@ -24,9 +24,19 @@
 }
 
 .image {
+  height: 100%;
   width: 100%;
   object-fit: cover;
-  height: 150px;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &Container {
+    height: 150px;
+    overflow: hidden;
+  }
 }
 
 .title {
