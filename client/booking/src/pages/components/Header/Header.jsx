@@ -10,7 +10,7 @@ import Button from "react-bootstrap/Button";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 
-const PopoverPositionedExample = ({ item }) => {
+const PopoverBottom = ({ item }) => {
   return (
     <>
       <OverlayTrigger
@@ -42,7 +42,7 @@ const Header = ({ type }) => {
         <div className={styles.itemsContainer}>
           {headerItems.map((item, index) => (
             <div key={index} className={styles.item}>
-              <PopoverPositionedExample item={item} />
+              <PopoverBottom item={item} />
             </div>
           ))}
         </div>

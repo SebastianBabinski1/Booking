@@ -112,7 +112,6 @@ const Hotel = () => {
           />
           <div className={styles.container}>
             <div className={styles.wrapper}>
-              <button className={styles.bookNow}>Reserve or book now!</button>
               <p className={styles.title}>{data.name}</p>
               <div className={styles.address}>
                 <FontAwesomeIcon icon={faLocationDot} />
@@ -166,9 +165,9 @@ const Hotel = () => {
                 </div>
               </div>
             </div>
-            <MailList />
-            <Footer />
+            {/* <Footer /> */}
           </div>
+          <MailList />
         </>
       )}
       {openModal && <Reserve setOpen={setOpenModal} hotelId={id} />}

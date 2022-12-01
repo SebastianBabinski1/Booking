@@ -3,7 +3,7 @@
 .container {
   display: flex;
   align-items: center;
-  margin-top: 20px;
+  margin: 20px 10px 0 10px;
   flex-direction: column;
 }
 
@@ -17,12 +17,16 @@
 }
 
 .imgWrapper {
-  width: 33%;
-  margin: 2px 0;
+  width: 50%;
   cursor: pointer;
+  padding: 5px;
 
   &:hover {
     box-shadow: 0px 0px 10px rgb(148, 145, 145);
+  }
+
+  @media (min-width: $screenMd) {
+    width: 33%;
   }
 }
 
@@ -59,19 +63,6 @@
   justify-content: space-between;
 }
 
-.bookNow {
-  position: absolute;
-  top: 10px;
-  right: 0;
-  border: none;
-  padding: 10px 20px;
-  color: white;
-  background-color: $secondaryBlue;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
 .details {
   display: flex;
   justify-content: space-between;
@@ -79,7 +70,11 @@
   margin-top: 20px;
 
   &Texts {
-    flex: 3;
+    flex: 1;
+
+    @media (min-width: $screenMd) {
+      flex: 3;
+    }
   }
 }
 
@@ -129,6 +124,7 @@
   &Wrapper {
     display: flex;
     justify-content: center;
+    flex: 8;
   }
 
   &Img {
@@ -143,6 +139,7 @@
   font-size: 50px;
   color: lightgray;
   cursor: pointer;
+  flex: 1;
 
   &:hover {
     color: rgb(197, 191, 191);

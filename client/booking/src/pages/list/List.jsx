@@ -13,13 +13,24 @@ const List = () => {
 
   const [destination, setDestination] = useState(location.state.destination);
   const [dates, setDates] = useState(location.state.dates);
+  const [type, setType] = useState(location.state.type);
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
 
+  const fetchContent = () => {
+    if (destination !== "") {
+      return `city=${destination}&min=${min || 0}&max=${max || 999}`;
+    } else if (destination === "" && type !== undefined) {
+      return `type=${type}&min=${min || 0}&max=${max || 999}`;
+    } else {
+      return `min=${min || 0}&max=${max || 999}`;
+    }
+  };
+
   const { data, loading, error, reFetch } = useFetch(
-    `api/hotels?city=${destination}&min=${min || 0}&max=${max || 999}`
+    `api/hotels?${fetchContent()}`
   );
 
   const handleClick = () => {

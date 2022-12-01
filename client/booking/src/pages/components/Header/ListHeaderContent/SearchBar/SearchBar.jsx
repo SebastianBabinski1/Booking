@@ -11,6 +11,8 @@ import { SearchContext } from "../../../../../context/SearchContext";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import OptionsWindow from "./OptionsWindow/OptionsWindow";
+import Popover from "react-bootstrap/Popover";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 const SearchBar = () => {
   const [openDate, setOpenDate] = useState(false);
@@ -22,6 +24,7 @@ const SearchBar = () => {
     room: 1,
   });
 
+  const [showPopover, setShowPopover] = useState(false);
   const [dates, setDates] = useState([
     {
       startDate: new Date(),
@@ -33,7 +36,10 @@ const SearchBar = () => {
   const { dispatch } = useContext(SearchContext);
 
   const handleSearch = () => {
-    dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
+    dispatch({
+      type: "NEW_SEARCH",
+      payload: { destination, dates, options },
+    });
     navigate("/hotels", { state: { destination, dates, options } });
   };
 
