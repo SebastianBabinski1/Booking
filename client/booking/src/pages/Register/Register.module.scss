@@ -1,8 +1,14 @@
 @import "../../utils/utils.scss";
 
-.register {
-  display: flex;
+.registerWrapper {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.register {
+  flex: 1;
+  display: flex;
   align-items: center;
   justify-content: center;
 
@@ -32,4 +38,8 @@
     background-color: #0071c28c;
     cursor: not-allowed;
   }
+}
+
+.error {
+  text-align: center;
 }

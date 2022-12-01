@@ -5,6 +5,13 @@ import jwt from "jsonwebtoken";
 
 export const register = async (req, res, next) => {
   try {
+    const existingUser = await User.findOne({ username: req.body.username });
+    const existingEmail = await User.findOne({ email: req.body.email });
+
+    if (existingUser) return next(createError(404, "Username is busy"));
+    if (existingEmail)
+      return next(createError(404, "Found user with this email"));
+
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
 

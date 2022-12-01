@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import Navbar from "../components/Navbar/Navbar";
 import styles from "./Login.module.scss";
 
 const Login = () => {
@@ -31,30 +32,33 @@ const Login = () => {
   };
 
   return (
-    <div className={styles.login}>
-      <div className={styles.loginContainer}>
-        <input
-          type="text"
-          placeholder="username"
-          id="username"
-          onChange={handleChange}
-          className={styles.loginInput}
-        />
-        <input
-          type="password"
-          placeholder="password"
-          id="password"
-          onChange={handleChange}
-          className={styles.loginInput}
-        />
-        <button
-          disabled={loading}
-          onClick={handleClick}
-          className={styles.loginButton}
-        >
-          Login
-        </button>
-        {error && <span>{error.message}</span>}
+    <div className={styles.loginWrapper}>
+      <Navbar />
+      <div className={styles.login}>
+        <div className={styles.loginContainer}>
+          <input
+            type="text"
+            placeholder="username"
+            id="username"
+            onChange={handleChange}
+            className={styles.loginInput}
+          />
+          <input
+            type="password"
+            placeholder="password"
+            id="password"
+            onChange={handleChange}
+            className={styles.loginInput}
+          />
+          <button
+            disabled={loading}
+            onClick={handleClick}
+            className={styles.loginButton}
+          >
+            Login
+          </button>
+          {error && <span>{error.message}</span>}
+        </div>
       </div>
     </div>
   );
