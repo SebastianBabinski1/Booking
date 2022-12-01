@@ -1,6 +1,10 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../../../context/SearchContext";
+import {
+  defaultGuestsDates as dates,
+  defaultGuestsOptions as options,
+} from "../../../utils/utils";
 import useFetch from "../../hooks/useFetch";
 import styles from "./Featured.module.scss";
 
@@ -9,79 +13,59 @@ const Featured = () => {
     "/api/hotels/countByCity?cities=Berlin,Madrid,London"
   );
 
-  const { dispatch } = useContext(SearchContext);
-  const navigate = useNavigate();
-
-  const options = {
-    adult: 1,
-    children: 0,
-    room: 1,
-  };
-
-  const today = new Date();
-  const tommorow = new Date();
-  tommorow.setDate(tommorow.getDate() + 1);
-  const dates = [
+  const featuredData = [
     {
-      startDate: today,
-      endDate: tommorow,
-      key: "selection",
+      name: "Berlin",
+      photoSrc: "https://f4fcdn.eu/wp-content/uploads/2019/07/Berlinv2.jpg",
+    },
+    {
+      name: "Madrid",
+      photoSrc:
+        "https://www.spain.info/export/sites/segtur/.content/imagenes/cabeceras-grandes/madrid/calle-gran-via-madrid-s333961043.jpg_604889389.jpg",
+    },
+    {
+      name: "London",
+      photoSrc:
+        "https://www.history.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTYyNDg1MjE3MTI1Mjc5Mzk4/topic-london-gettyimages-760251843-promo.jpg",
     },
   ];
 
-  const handleSearch = (destination) => {
-    dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
-    navigate("/hotels", { state: { destination, dates, options } });
-  };
+  const { dispatch } = useContext(SearchContext);
+  const navigate = useNavigate();
 
+  const handleSearch = (destination) => {
+    dispatch({
+      type: "NEW_SEARCH",
+      payload: { destination, dates, options },
+    });
+    navigate("/hotels", {
+      state: { destination, dates, options },
+    });
+  };
   return (
     <div className={styles.featured}>
       {loading ? (
         "Loading, please wait"
       ) : (
         <>
-          <div
-            className={styles.featuredItem}
-            onClick={() => handleSearch("Berlin")}
-          >
-            <img
-              className={styles.image}
-              src="https://f4fcdn.eu/wp-content/uploads/2019/07/Berlinv2.jpg"
-              alt="featured"
-            />
-            <div className={styles.title}>
-              <p className={styles.place}>Berlin</p>
-              <p className={styles.properties}>{data[0]} properties</p>
-            </div>
-          </div>
-          <div
-            className={styles.featuredItem}
-            onClick={() => handleSearch("Madrid")}
-          >
-            <img
-              className={styles.image}
-              src="https://www.spain.info/export/sites/segtur/.content/imagenes/cabeceras-grandes/madrid/calle-gran-via-madrid-s333961043.jpg_604889389.jpg"
-              alt="featured"
-            />
-            <div className={styles.title}>
-              <p className={styles.place}>Madrid</p>
-              <p className={styles.properties}>{data[1]} properties</p>
-            </div>
-          </div>
-          <div
-            className={styles.featuredItem}
-            onClick={() => handleSearch("London")}
-          >
-            <img
-              className={styles.image}
-              src="https://www.history.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTYyNDg1MjE3MTI1Mjc5Mzk4/topic-london-gettyimages-760251843-promo.jpg"
-              alt="featured"
-            />
-            <div className={styles.title}>
-              <p className={styles.place}>London</p>
-              <p className={styles.properties}>{data[2]} properties</p>
-            </div>
-          </div>
+          {featuredData.map((item, index) => {
+            return (
+              <div
+                className={styles.featuredItem}
+                onClick={() => handleSearch(item.name)}
+              >
+                <img
+                  className={styles.image}
+                  src={item.photoSrc}
+                  alt="featured"
+                />
+                <div className={styles.title}>
+                  <p className={styles.place}>{item.name}</p>
+                  <p className={styles.properties}>{data[index]} properties</p>
+                </div>
+              </div>
+            );
+          })}
         </>
       )}
     </div>

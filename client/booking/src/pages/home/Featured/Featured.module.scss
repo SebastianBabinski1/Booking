@@ -8,7 +8,7 @@
 
   @media (min-width: $screenMd) {
     flex-direction: row;
-    max-width: 1024px;
+    max-width: $maxWidth;
     margin: 0;
   }
 

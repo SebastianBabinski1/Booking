@@ -65,7 +65,6 @@ const Reserve = ({ setOpen, hotelId }) => {
     } catch (err) {}
   };
 
-  // console.log(selectedRooms);
   return (
     <div className={styles.reserve}>
       <div className={styles.reserveContainer}>

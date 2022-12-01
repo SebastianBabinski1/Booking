@@ -1,0 +1,35 @@
+@import "../../utils/utils.scss";
+
+.register {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+
+  &Container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 10px;
+  }
+
+  &Input {
+    height: 40px;
+    padding: 10px;
+  }
+
+  &Button {
+    border: none;
+    padding: 10px 20px;
+    background-color: $secondaryBlue;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  &Button:disabled {
+    background-color: #0071c28c;
+    cursor: not-allowed;
+  }
+}

@@ -32,7 +32,12 @@ const Navbar = () => {
           </div>
         ) : (
           <div className={styles.navItems}>
-            <button className={styles.navButton}>Register</button>
+            <button
+              className={styles.navButton}
+              onClick={() => navigate("/register")}
+            >
+              Register
+            </button>
             <button
               onClick={() => navigate("/login")}
               className={styles.navButton}

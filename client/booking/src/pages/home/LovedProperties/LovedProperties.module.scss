@@ -17,6 +17,7 @@
   border-radius: 10px;
   flex-direction: column;
   cursor: pointer;
+  text-align: center;
 }
 
 .image {
@@ -28,6 +29,7 @@
 }
 
 .name {
+  flex: 1;
   font-weight: bold;
 }
 

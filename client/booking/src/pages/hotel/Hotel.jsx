@@ -17,6 +17,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { SearchContext } from "../../context/SearchContext";
 import { AuthContext } from "../../context/AuthContext";
 import Reserve from "../components/Reserve/Reserve";
+import { dayDifference } from "../../utils/dayDifference";
+import { VerticallyCenteredModal } from "./VerticallyCenteredModal/VerticallyCenteredModal";
 
 const Hotel = () => {
   const location = useLocation();
@@ -31,63 +33,52 @@ const Hotel = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  console.log("id: ", id);
-  console.log("dates in Hotel comp: ", dates);
-  console.log("data in Hotel comp: ", data);
-
-  const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
-  const dayDifference = (date1, date2) => {
-    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
-    const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
-    return diffDays;
-  };
-
   const days = dayDifference(dates[0].endDate, dates[0].startDate);
 
-  function MyVerticallyCenteredModal(props) {
-    const handleMove = (dir) => {
-      let newSlideIndex;
+  // const VerticallyCenteredModal = (props) => {
+  //   const handleMove = (dir) => {
+  //     let newSlideIndex;
 
-      if (dir === "l") {
-        newSlideIndex = slideIndex === 0 ? 5 : slideIndex - 1;
-      } else {
-        newSlideIndex = slideIndex === 5 ? 0 : slideIndex + 1;
-      }
+  //     if (dir === "l") {
+  //       newSlideIndex = slideIndex === 0 ? 5 : slideIndex - 1;
+  //     } else {
+  //       newSlideIndex = slideIndex === 5 ? 0 : slideIndex + 1;
+  //     }
 
-      setSlideIndex(newSlideIndex);
-    };
+  //     setSlideIndex(newSlideIndex);
+  //   };
 
-    return (
-      <Modal
-        {...props}
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        size="xl"
-        animation={false}
-      >
-        <Modal.Header closeButton />
-        <Modal.Body className={styles.sliderContent}>
-          <FontAwesomeIcon
-            icon={faCircleArrowLeft}
-            className={styles.arrow}
-            onClick={() => handleMove("l")}
-          />
-          <div className={styles.sliderWrapper}>
-            <img
-              src={data.photos[slideIndex]}
-              alt="slide"
-              className={styles.sliderImg}
-            />
-          </div>
-          <FontAwesomeIcon
-            icon={faCircleArrowRight}
-            className={styles.arrow}
-            onClick={() => handleMove("r")}
-          />
-        </Modal.Body>
-      </Modal>
-    );
-  }
+  //   return (
+  //     <Modal
+  //       {...props}
+  //       aria-labelledby="contained-modal-title-vcenter"
+  //       centered
+  //       size="xl"
+  //       animation={false}
+  //     >
+  //       <Modal.Header closeButton />
+  //       <Modal.Body className={styles.sliderContent}>
+  //         <FontAwesomeIcon
+  //           icon={faCircleArrowLeft}
+  //           className={styles.arrow}
+  //           onClick={() => handleMove("l")}
+  //         />
+  //         <div className={styles.sliderWrapper}>
+  //           <img
+  //             src={data.photos[slideIndex]}
+  //             alt="slide"
+  //             className={styles.sliderImg}
+  //           />
+  //         </div>
+  //         <FontAwesomeIcon
+  //           icon={faCircleArrowRight}
+  //           className={styles.arrow}
+  //           onClick={() => handleMove("r")}
+  //         />
+  //       </Modal.Body>
+  //     </Modal>
+  //   );
+  // };
 
   const handleClick = () => {
     if (user) {
@@ -106,9 +97,12 @@ const Hotel = () => {
         "loading"
       ) : (
         <>
-          <MyVerticallyCenteredModal
+          <VerticallyCenteredModal
             show={open}
             onHide={() => setOpen(false)}
+            slideIndex={slideIndex}
+            setSlideIndex={setSlideIndex}
+            data={data}
           />
           <div className={styles.container}>
             <div className={styles.wrapper}>

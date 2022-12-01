@@ -58,7 +58,7 @@ const PropetryList = () => {
                 onClick={() => handleSearch(data[i]?.type)}
               >
                 <img src={img} alt="gizycko" className={styles.image} />
-                <div>
+                <div className={styles.textWrapper}>
                   <p className={styles.title}>{data[i]?.type}</p>
                   <p className={styles.desc}>
                     {data[i]?.count} {data[i]?.type}s
