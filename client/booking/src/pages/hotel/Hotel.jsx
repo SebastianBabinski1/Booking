@@ -35,51 +35,6 @@ const Hotel = () => {
 
   const days = dayDifference(dates[0].endDate, dates[0].startDate);
 
-  // const VerticallyCenteredModal = (props) => {
-  //   const handleMove = (dir) => {
-  //     let newSlideIndex;
-
-  //     if (dir === "l") {
-  //       newSlideIndex = slideIndex === 0 ? 5 : slideIndex - 1;
-  //     } else {
-  //       newSlideIndex = slideIndex === 5 ? 0 : slideIndex + 1;
-  //     }
-
-  //     setSlideIndex(newSlideIndex);
-  //   };
-
-  //   return (
-  //     <Modal
-  //       {...props}
-  //       aria-labelledby="contained-modal-title-vcenter"
-  //       centered
-  //       size="xl"
-  //       animation={false}
-  //     >
-  //       <Modal.Header closeButton />
-  //       <Modal.Body className={styles.sliderContent}>
-  //         <FontAwesomeIcon
-  //           icon={faCircleArrowLeft}
-  //           className={styles.arrow}
-  //           onClick={() => handleMove("l")}
-  //         />
-  //         <div className={styles.sliderWrapper}>
-  //           <img
-  //             src={data.photos[slideIndex]}
-  //             alt="slide"
-  //             className={styles.sliderImg}
-  //           />
-  //         </div>
-  //         <FontAwesomeIcon
-  //           icon={faCircleArrowRight}
-  //           className={styles.arrow}
-  //           onClick={() => handleMove("r")}
-  //         />
-  //       </Modal.Body>
-  //     </Modal>
-  //   );
-  // };
-
   const handleClick = () => {
     if (user) {
       setOpenModal(true);

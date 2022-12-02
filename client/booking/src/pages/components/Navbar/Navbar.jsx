@@ -26,6 +26,12 @@ const Navbar = () => {
         {user ? (
           <div className={styles.logoutWrapper}>
             <p className={styles.username}>Welcome {user.username}!</p>
+            <button
+              className={styles.navButton}
+              onClick={() => navigate("/reservations")}
+            >
+              Your reservations
+            </button>
             <button className={styles.navButton} onClick={handleClick}>
               Logout
             </button>

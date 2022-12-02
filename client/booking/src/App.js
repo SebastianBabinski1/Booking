@@ -5,6 +5,7 @@ import Hotel from "./pages/Hotel/Hotel";
 import "./utils/reset.scss";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import Reservations from "./pages/Reservations/Reservations";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/hotels/:id" element={<Hotel />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
+        <Route path="/reservations" element={<Reservations />}></Route>
       </Routes>
     </BrowserRouter>
   );

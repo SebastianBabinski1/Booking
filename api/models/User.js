@@ -22,6 +22,10 @@ const UserSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    booked: {
+      type: Array,
+      default: [],
+    },
   },
   { timestamps: true }
 );
