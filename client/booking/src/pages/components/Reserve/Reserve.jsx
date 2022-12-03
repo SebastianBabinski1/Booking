@@ -63,7 +63,7 @@ const Reserve = ({ setOpen, hotelId }) => {
           updatedBooking.push({
             hotel: hotelData.data,
             room: roomId,
-            date: allDates,
+            date: { start: dates[0].startDate, end: dates[0].endDate },
           });
 
           updatedUser.booked = updatedBooking;

@@ -9,14 +9,21 @@ import styles from "./Reservations.module.scss";
 const Reservations = () => {
   const { user, dispatch } = useContext(AuthContext);
 
-  console.log(user);
-
   return (
     <div>
       <Navbar />
-      <div>
+      <div className={styles.reservedHotelsWrapper}>
         {user.booked.map((item) => {
-          return <SearchItem item={item.hotel} />;
+          console.log("item");
+          console.log(item);
+
+          return (
+            <SearchItem
+              item={item.hotel}
+              reservedRoom={item.room}
+              date={item.date}
+            />
+          );
         })}
       </div>
     </div>

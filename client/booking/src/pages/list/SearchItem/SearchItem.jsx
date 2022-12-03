@@ -1,7 +1,18 @@
 import styles from "./SearchItem.module.scss";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../../context/AuthContext";
+import axios from "axios";
 
-const SearchItem = ({ item }) => {
+const SearchItem = ({ item, reservedRoom, date }) => {
+  const { user, dispatch } = useContext(AuthContext);
+
+  console.log("user", user);
+  // console.log("item", item);
+  // console.log("reservedRoom", reservedRoom);
+  // console.log("date", date);
+  const updatedUser = { ...user };
+
   const SeeAvailability = () => {
     return (
       <div className={styles.searchDetails}>
@@ -24,6 +35,28 @@ const SearchItem = ({ item }) => {
     );
   };
 
+  const handleCancellation = async () => {
+    try {
+      const updatedBooked = user.booked.filter((i) => {
+        return i.room !== reservedRoom;
+      });
+
+      updatedUser.booked = updatedBooked;
+
+      dispatch({
+        type: "UPDATE",
+        payload: updatedUser,
+      });
+      const res = axios.put(`/api/users/${user._id}`, {
+        booked: updatedBooked,
+      });
+
+      return res;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className={styles.searchItem}>
       <div className={styles.leftSide}>
@@ -41,11 +74,23 @@ const SearchItem = ({ item }) => {
           </span>
           <span className={styles.searchFeatures}>{item.desc}</span>
           <span className={styles.searchCancelOp}>Free cancellation</span>
-          <span className={styles.searchCancelOpSubtitle}>
-            You can cancel later, so lock in this great price today!
-          </span>
+          {date && (
+            <span className={styles.searchCancelOpSubtitle}>
+              You can cancel later, so lock in this great price today!
+            </span>
+          )}
         </div>
-        <SeeAvailability />
+        {date ? (
+          <>
+            <p>Dates of reservation: </p>
+            <p>
+              from {date.start.substr(0, 10)} to {date.end.substr(0, 10)}
+            </p>
+            <button onClick={handleCancellation}>Cancel reservation</button>
+          </>
+        ) : (
+          <SeeAvailability />
+        )}
       </div>
     </div>
   );
