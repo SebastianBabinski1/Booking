@@ -13,10 +13,8 @@ const Reservations = () => {
     <div>
       <Navbar />
       <div className={styles.reservedHotelsWrapper}>
+        <p>Your reservations</p>
         {user.booked.map((item) => {
-          console.log("item");
-          console.log(item);
-
           return (
             <SearchItem
               item={item.hotel}

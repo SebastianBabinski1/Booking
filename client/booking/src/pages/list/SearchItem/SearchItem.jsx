@@ -26,9 +26,7 @@ const SearchItem = ({ item, reservedRoom, date }) => {
           <span className={styles.searchPrice}>{item.cheapestPrice}</span>
           <span className={styles.searchTaxOp}>Includes taxes and fees</span>
           <Link to={`/hotels/${item._id}`}>
-            <button className={styles.searchCheckButton}>
-              See availability
-            </button>
+            <button className={styles.defaultButton}>See availability</button>
           </Link>
         </div>
       </div>
@@ -81,13 +79,18 @@ const SearchItem = ({ item, reservedRoom, date }) => {
           )}
         </div>
         {date ? (
-          <>
-            <p>Dates of reservation: </p>
+          <div className={styles.reservationData}>
+            <p className={styles.datesOfReservation}>Dates of reservation: </p>
             <p>
               from {date.start.substr(0, 10)} to {date.end.substr(0, 10)}
             </p>
-            <button onClick={handleCancellation}>Cancel reservation</button>
-          </>
+            <button
+              onClick={handleCancellation}
+              className={styles.defaultButton}
+            >
+              Cancel reservation
+            </button>
+          </div>
         ) : (
           <SeeAvailability />
         )}

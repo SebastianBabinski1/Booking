@@ -88,16 +88,6 @@
     color: gray;
   }
 
-  &CheckButton {
-    background-color: $secondaryBlue;
-    font-weight: bold;
-    padding: 10px 5px;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-
   &Price {
     font-size: 20px;
     font-weight: bold;
@@ -109,4 +99,22 @@
 }
 .rightSide {
   flex: 1;
+}
+
+.reservationData {
+  text-align: right;
+
+  & > p {
+    margin: 5px 0;
+  }
+}
+
+.defaultButton {
+  background-color: $secondaryBlue;
+  font-weight: bold;
+  padding: 10px 5px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
 }
