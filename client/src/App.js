@@ -9,7 +9,7 @@ import Reservations from "./pages/Reservations/Reservations";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/hotels" element={<List />}></Route>

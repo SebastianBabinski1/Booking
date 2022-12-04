@@ -1,7 +1,7 @@
 {
   "name": "booking",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "https://sebastianbabinski1.github.io/Booking/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -54,5 +54,5 @@
     "sass-loader": "^13.0.2",
     "web-vitals": "^3.0.3"
   },
-  "proxy": "http://localhost:8800"
+  "proxy": "http://booking-backend.onrender.com"
 }
